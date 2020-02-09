@@ -1,0 +1,12 @@
+---
+apiVersion: build.dev/v1alpha1
+kind: Build
+metadata:
+  name: buildpacks
+spec:
+  strategy: buildpacks
+  source:
+    name: repository
+    type: git
+  builderImage: heroku/buildpacks:18
+  output: otaviof/nodejs-ex:latest

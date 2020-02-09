@@ -1,0 +1,17 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  resources:
+    - name: {{ .Values.spec.source.name }}
+      type: {{ .Values.spec.source.type }}
+  tasks:
+    - name: task
+      taskRef:
+        name: {{ template "fullname" . }}
+      resources:
+        inputs:
+          - name: {{ .Values.spec.source.name }}
+            resource: {{ .Values.spec.source.name }}

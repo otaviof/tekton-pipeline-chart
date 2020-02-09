@@ -1,0 +1,31 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  inputs:
+    resources:
+      - name: {{ .Values.spec.source.name }}
+        type: {{ .Values.spec.source.type }}
+{{- if eq .Values.spec.strategy "buildpacks" }}
+  stepTemplate:
+    env:
+      - name: CNB_PLATFORM_API
+        value: "0.2"
+{{- end }}
+  steps:
+{{- if eq .Values.spec.strategy "custom" }}
+{{ toYaml .Values.spec.steps | indent 4 }}
+{{- else if eq .Values.spec.strategy "buildpacks" }}
+{{- template "steps-buildpacks" . }}
+{{- else if eq .Values.spec.strategy "s2i" }}
+{{- template "steps-s2i" . }}
+{{- end }}
+{{- if eq .Values.spec.strategy "buildpacks" }}
+  volumes:
+    - name: cache-dir
+      emptyDir: {}
+    - name: layers-dir
+      emptyDir: {}
+{{- end }}

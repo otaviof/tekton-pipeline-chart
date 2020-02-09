@@ -1,0 +1,28 @@
+---
+apiVersion: build.dev/v1alpha1
+kind: BuildStrategy
+metadata:
+  name: custom-strategy
+spec:
+  strategy: custom
+  source:
+    name: repository
+    type: git
+  steps:
+    - name: s2i-build-as-dockerfile
+      image: otaviof/s2i:latest
+      workingDir: /workspace/repository
+      args:
+        - build
+        - .
+        - otaviof/nodejs-12-rhel7:latest
+        - otaviof/nodejs-ex:latest
+        - --as-dockerfile=Dockerfile
+    - name: buildah-bud
+      image: quay.io/buildah/stable:latest
+      workingDir: /workspace/repository
+      args:
+        - buildah
+        - bud
+        - --tag="otaviof/nodejs-ex:latest"
+        - /workspace/repository

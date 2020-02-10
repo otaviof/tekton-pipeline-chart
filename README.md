@@ -43,7 +43,7 @@ construct container images.
 
 ### `buildpacks`
 
-Using [Tekton Catalog's buildpack][tkncatalogbuildpack] as exemple, it defines the Cloud Native
+Using [Tekton Catalog's buildpack][tkncatalogbuildpack] as example, it defines the Cloud Native
 Builder lifecycle commands to execute:
 
 - *Detect*: runs `detector`, to recognize the code base platform, as Ruby, Python, Node.js, etc;
@@ -52,7 +52,7 @@ Builder lifecycle commands to execute:
 - *Build*: runs `builder`, to execute the container image build based on conclusions taken in the
 previous steps;
 
-A example of *buildpacks* stragegy is [here](./values.yaml).
+A example of *buildpacks* strategy is [here](./values.yaml).
 
 ```sh
 helm install --debug --atomic --values="values.yaml" tkn .
@@ -66,7 +66,7 @@ Using `source-to-image` container image, we can use `s2i` to generate the projec
 - `Dockerfile`: generate by `s2i`;
 - `buildah`: creates a final container image;
 
-A example of *s2i* stragegy values is [here](./values-s2i.yaml).
+A example of *s2i* strategy values is [here](./values-s2i.yaml).
 
 ```sh
 helm install --debug --atomic --values="values-s2i.yaml" tkn .
@@ -74,7 +74,7 @@ helm install --debug --atomic --values="values-s2i.yaml" tkn .
 
 ### `custom`
 
-Additionally, you can employ *custom* stragegy to run your own [Tekton Task steps][tkntasksteps].
+Additionally, you can employ *custom* strategy to run your own [Tekton Task steps][tkntasksteps].
 Please consider the example [here](./values-custom.yaml)
 
 ```sh

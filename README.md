@@ -54,6 +54,10 @@ previous steps;
 
 A example of *buildpacks* stragegy is [here](./values.yaml).
 
+```sh
+helm install --debug --atomic --values="values.yaml" tkn .
+```
+
 ### `s2i`
 
 Using `source-to-image` container image, we can use `s2i` to generate the project at hand a
@@ -64,10 +68,18 @@ Using `source-to-image` container image, we can use `s2i` to generate the projec
 
 A example of *s2i* stragegy values is [here](./values-s2i.yaml).
 
+```sh
+helm install --debug --atomic --values="values-s2i.yaml" tkn .
+```
+
 ### `custom`
 
 Additionally, you can employ *custom* stragegy to run your own [Tekton Task steps][tkntasksteps].
 Please consider the example [here](./values-custom.yaml)
+
+```sh
+helm install --debug --atomic --values="values-custom.yaml" tkn .
+```
 
 
 [buildpacks]: https://buildpacks.io

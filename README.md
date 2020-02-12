@@ -72,6 +72,15 @@ A example of *s2i* strategy values is [here](./values-s2i.yaml).
 helm install --debug --atomic --values="values-s2i.yaml" tkn .
 ```
 
+### `kaniko`
+
+Uses `s2i` to create an `Dockerfile` and [Kaniko][kaniko] to build the final container image. A
+example of `values.yaml` for Kaniko strategy is [here](./values-kaniko.yaml).
+
+```sh
+helm install --debug --atomic --values="values-kaniko.yaml" tkn .
+```
+
 ### `custom`
 
 Additionally, you can employ *custom* strategy to run your own [Tekton Task steps][tkntasksteps].
@@ -86,3 +95,4 @@ helm install --debug --atomic --values="values-custom.yaml" tkn .
 [s2i]: https://github.com/openshift/source-to-image
 [tkncatalogbuildpack]: https://github.com/tektoncd/catalog/tree/master/buildpacks
 [tkntasksteps]: https://github.com/tektoncd/pipeline/blob/master/docs/tasks.md#steps
+[kaniko]: https://github.com/GoogleContainerTools/kaniko

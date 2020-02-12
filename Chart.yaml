@@ -2,4 +2,4 @@
 apiVersion: v1
 name: tekton-pipeline
 description: Tekton Pipeline with Resources and Tasks
-version: 0.0.1
+version: 0.0.2

@@ -1,16 +1,10 @@
 {{- define "steps-s2i" }}
-    - name: s2i-build-as-dockerfile
-      image: otaviof/s2i:latest
-      workingDir: /workspace/{{ .Values.spec.source.name }}
-      args:
-        - build
-        - .
-        - {{ .Values.spec.builderImage }}
-        - {{ .Values.spec.output }}
-        - --as-dockerfile=Dockerfile
+{{- template "s2i-generate" . }}
     - name: buildah-bud
       image: quay.io/buildah/stable:latest
       workingDir: /workspace/{{ .Values.spec.source.name }}
+      securityContext:
+        runAsUser: 0
       args:
         - buildah
         - bud

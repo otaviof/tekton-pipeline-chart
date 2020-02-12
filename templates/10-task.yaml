@@ -21,6 +21,8 @@ spec:
 {{- template "steps-buildpacks" . }}
 {{- else if eq .Values.spec.strategy "s2i" }}
 {{- template "steps-s2i" . }}
+{{- else if eq .Values.spec.strategy "kaniko" }}
+{{- template "steps-kaniko" . }}
 {{- end }}
 {{- if eq .Values.spec.strategy "buildpacks" }}
   volumes:

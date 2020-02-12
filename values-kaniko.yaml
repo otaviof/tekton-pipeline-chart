@@ -1,0 +1,12 @@
+---
+apiVersion: build.dev/v1alpha1
+kind: Build
+metadata:
+  name: kaniko
+spec:
+  strategy: kaniko
+  source:
+    name: repository
+    type: git
+  builderImage: registry.redhat.io/rhscl/nodejs-12-rhel7:latest
+  output: otaviof/nodejs-ex:latest
